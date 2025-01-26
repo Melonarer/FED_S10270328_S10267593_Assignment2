@@ -103,25 +103,20 @@ const translations = {
     document.getElementById('review-5-name').innerText = reviews[4].name;
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const prevButton = document.querySelector('.carousel-button.prev');
-    const nextButton = document.querySelector('.carousel-button.next');
-    const carouselReviews = document.querySelector('.carousel-reviews');
-    
-    let scrollPosition = 0;
-    const reviewWidth = document.querySelector('.review').offsetWidth;
-  
-    prevButton.addEventListener('click', () => {
-      scrollPosition = Math.max(scrollPosition - reviewWidth, 0);
-      carouselReviews.style.transform = `translateX(-${scrollPosition}px)`;
-    });
-  
-    nextButton.addEventListener('click', () => {
-      scrollPosition = Math.min(scrollPosition + reviewWidth, reviewWidth * 4); // Max scroll (5 reviews total)
-      carouselReviews.style.transform = `translateX(-${scrollPosition}px)`;
-    });
+  //test
+  let currentIndex = 0;
+
+  document.querySelector(".carousel-button.next").addEventListener("click", () => {
+    const reviews = document.querySelector(".carousel-reviews");
+    reviews.scrollLeft += 300; // Adjust based on review width
+    currentIndex++;
   });
   
+  document.querySelector(".carousel-button.prev").addEventListener("click", () => {
+    const reviews = document.querySelector(".carousel-reviews");
+    reviews.scrollLeft -= 300; // Adjust based on review width
+    currentIndex--;
+  });
   
   // Initialise translation with the default language (English) when the page loads
   translatePage();
