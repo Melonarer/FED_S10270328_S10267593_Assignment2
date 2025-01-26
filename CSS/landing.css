@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Asul:wght@400;700&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* General Styles */
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #EEEDEC;
+  display: flex; /* Flexbox layout to align content */
+  flex-direction: column; /* Stack content vertically */
+  min-height: 100vh; /* Ensure body spans full height of viewport */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  color: #383535;
+}
+
+/* Top Bar */
+.top-bar {
+  background-color: #c96d6d;
+  color: white;
+  padding: 0.3125rem; /* 5px / 16px = 0.3125rem */
+  text-align: center; /* Centre-align text */
+  width: 100%; /* Full width */
+  box-shadow: 0 0.125rem 0.5rem rgba(49, 36, 36, 0.2); /* Shadow for the top bar */
+  top: 0;
+  z-index: 10;
+}
+
+.top-bar h3 {
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.219); /* Adding text shadow */
+}
+
+/* Language Selector */
+.language-select {
+  padding: 0 4rem; /* Horizontal padding for alignment */
+  width: 100%;
+  margin: 2rem auto; /* Center horizontally with a margin */
+  text-align: left;
+  font-weight: bold;
+}
+
+.language-select label {
+  font-size: 1.25rem;
+  margin-right: 0.625rem;
+}
+
+.language-select select {
+  padding: 0.625rem; /* Space inside the select box */
+  font-size: 1.25rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3125rem;
+  background-color: white;
+}
+
+/* Features Section */
+#features {
+  background-image: url("../Consumer Images/background/features-background.png");
+  background-size: cover;
+  background-position: center;
+  text-align: left;
+  padding: 0 4rem; /* Padding for spacing inside */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#features h2 {
+  font-size: 2rem; /* Heading size */
+  text-shadow: 0.125rem 0.2rem 0.3rem rgba(255, 255, 255, 0.646); /* Adding text shadow */
+}
+
+/* Features Box Styling (Column Layout) */
+.features-container {
+  display: flex;
+  flex-direction: column; /* Stack the feature boxes vertically */
+  gap: 1rem; /* Space between features */
+  margin-top: 0.6rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.feature {
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  padding: 0 1.5rem; /* Padding inside the box */
+  width: 100%;
+  max-width: 30.5rem; /* Max width of 600px */
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1); /* Box shadow */
+  border-radius: 0.5rem; /* Rounded corners */
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+}
+
+.feature:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0 0.3125rem 1rem rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.feature h3 {
+  color: #c96d6d; /* Color for feature title */
+  font-size: 1.4rem; /* Title size */
+}
+
+.feature p {
+  font-size: 1.2rem; /* Text size for feature description */
+}
+
+/* Carousel Section */
+#carousel {
+  text-align: center;
+  background-color: #f8f8f8;
+  padding: 2rem; /* Padding for spacing inside the section */
+  margin-top: 2rem;
+  border-top: 1px solid #ddd; /* Top border to separate from other sections */
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+#carousel h2 {
+  font-size: 1.8rem; /* Heading size */
+  margin-bottom: 1.5rem;
+}
+
+/* Review Carousel */
+.carousel-reviews {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  gap: 1.5rem;
+  padding: 0 1.25rem; /* Padding inside the carousel */
+}
+
+.review {
+  text-align: center;
+  max-width: 280px; /* Max width for each review */
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease-in-out; /* Smooth hover transition */
+  margin: 1rem 0;
+}
+
+.review:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0 0.3125rem 1rem rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.review img {
+  width: 10rem; /* Larger image size */
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 50%; /* Circle image */
+  margin-bottom: 1rem;
+}
+
+.review blockquote {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.review cite {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Blockquote Styling */
+blockquote {
+  max-width: 250px; /* Max width for blockquotes */
+  font-style: italic;
+  background: #fff;
+  padding: 1rem;
+  border-left: 4px solid #c96d6dbe;
+  box-shadow: 0 0.125rem 0.125rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.3125rem;
+  margin: 0 auto; /* Center horizontally */
+}
+
+blockquote cite {
+  display: block;
+  text-align: right;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+blockquote p {
+  text-align: left;
+}
+
+/* Call-to-Action Section */
+#cta {
+  text-align: center;
+  margin: 2rem auto;
+  padding: 1.5rem 1.5rem;
+  background-color: #c96d6d52;
+}
+
+#cta h2 {
+  font-size: 2.2rem; /* Heading size for CTA */
+  margin-bottom: 1rem;
+}
+
+/* General Styles for Buttons */
+button {
+  border: none;
+  padding: 1rem 1.5rem; /* Padding for button */
+  border-radius: 0.3125em; /* Rounded corners */
+  font-size: 1.125rem;
+  margin: 0.5rem;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: transform 0.2s, box-shadow 0.2s ease; /* Smooth hover animation */
+  font-weight: bold;
+}
+
+#cta button{
+  margin-bottom: 1rem;
+}
+
+#cta button:hover {
+  background-color: white;
+  color: #b36262;
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0 0.3125rem 1rem rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+/* Signup Button Style */
+#signup-btn {
+  font-size: 1.5rem;
+  background-color: #c96d6d;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem; /* Adjusted padding for button */
+  cursor: pointer;
+  box-shadow: 0.125rem 0.125rem 0.3125rem rgba(49, 36, 36, 0.2);
+}
+
+/* Login Button Style */
+#login-btn {
+  font-size: 1.2rem;
+  background-color: transparent;
+  color: #c96d6d;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #c96d6d;
+  color: white;
+}
+
+footer p {
+  font-size: 1rem;
+}
+
+.carousel-button {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.carousel-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* For large screens (desktops, monitors) */
+@media (min-width: 1200px) {
+  .language-select {
+    padding: 0 6rem; /* Extra space around language selector */
+  }
+  .top-bar {
+    padding: 0.5rem; /* Space around the top bar */
+  }
+  .feature {
+    width: 45%; /* Wider feature boxes */
+  }
+  button {
+    font-size: 1.25rem; 
+    padding: 1.2rem 2rem; /* Larger buttons */
+  }
+}
+
+/* For medium-to-large screens (laptops, small desktops) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .language-select {
+    padding: 0 4rem; /* Standard padding */
+  }
+  .top-bar {
+    padding: 0.4rem; /* Moderate padding */
+  }
+  .feature {
+    width: 48%; /* Slightly smaller feature boxes */
+  }
+  button {
+    font-size: 1.125rem; 
+    padding: 1rem 1.5rem; /* Adjust button size */
+  }
+}
+
+/* For tablet-sized screens */
+@media (min-width: 768px) and (max-width: 991px) {
+  .language-select {
+    padding: 0 3rem; /* Reduce space around language selector */
+  }
+  .top-bar {
+    padding: 0.4rem; /* Moderate space for top bar */
+  }
+  .features-container {
+    flex-direction: row; /* Align features side by side */
+    justify-content: space-between; /* Space between features */
+  }
+  .feature {
+    width: 45%; /* Smaller feature boxes */
+  }
+  button {
+    font-size: 1rem; 
+    padding: 1rem 1.5rem; /* Standard button size */
+  }
+}
+
+/* For large phones and small tablets */
+@media (min-width: 600px) and (max-width: 767px) {
+  .language-select {
+    padding: 0 2rem; /* Reduced padding */
+  }
+  .top-bar {
+    padding: 0.375rem; /* Adjust space around the top bar */
+  }
+  .features-container {
+    flex-direction: column; 
+    align-items: center; /* Stack features vertically and center them */
+  }
+  .feature {
+    width: 90%; /* Feature boxes take most of the width */
+  }
+  button {
+    font-size: 1rem; 
+    padding: 1rem 1.2rem; /* Standard button size */
+  }
+  #carousel h2 {
+    font-size: 1.5rem; /* Smaller heading for carousel */
+  }
+}
+
+/* For smaller smartphones */
+@media (max-width: 599px) {
+  .language-select {
+    padding: 0 1rem; 
+    font-size: 1rem; /* Minimal padding and smaller font */
+  }
+  .top-bar {
+    padding: 0.375rem; /* Adjust space for top bar */
+  }
+  .features-container {
+    flex-direction: column; 
+    align-items: center; /* Stack and center features */
+  }
+  .feature {
+    width: 100%; /* Feature boxes take full screen width */
+  }
+  button {
+    font-size: 1rem; 
+    padding: 0.8rem 1.2rem; /* Smaller buttons */
+  }
+  #carousel h2 {
+    font-size: 1.3rem; /* Smaller carousel heading */
+  }
+  .review {
+    max-width: 100%; 
+    font-size: 0.9rem; /* Smaller font for reviews */
+  }
+  blockquote {
+    max-width: 100%; /* Blockquotes take full width */
+  }
+}
+
+/* For very small devices (older phones, tiny screens) */
+@media (max-width: 420px) {
+  .language-select {
+    padding: 0 0.5rem; 
+    font-size: 0.9rem; /* Tight padding and smaller font */
+  }
+  .top-bar {
+    padding: 0.25rem; 
+    font-size: 1rem; /* Small top bar */
+  }
+  button {
+    font-size: 0.9rem; 
+    padding: 0.7rem 1.2rem; /* Compact buttons */
+  }
+  #carousel h2 {
+    font-size: 1.2rem; /* Smaller carousel heading */
+  }
+  .review {
+    max-width: 100%; 
+    font-size: 0.85rem; /* Smaller font for reviews */
+  }
+  blockquote {
+    max-width: 100%; /* Blockquotes take full width */
+  }
+  footer p {
+    font-size: 0.85rem; /* Smaller footer text */
+  }
+}

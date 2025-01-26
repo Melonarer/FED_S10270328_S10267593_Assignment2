@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your MokeSell profile.">
+  <title>Profile - MokeSell</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href=".css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2>Welcome, <span id="profile-username"></span></h2>
+    <p>Email: <span id="profile-email"></span></p>
+    <p>Loyalty Points: <span id="profile-loyalty"></span></p>
+    <hr>
+    <button class="btn btn-primary mt-3" id="show-update-form">Update Profile</button>
+    <button class="btn btn-secondary mt-3" id="show-update-password-form">Change Password</button>
+    <hr>
+
+  <!-- Update Profile Form (Hidden by Default) -->
+  <div id="update-profile-form" style="display: none;">
+    <h4>Update Profile</h4>
+    <form id="update-form">
+      <div class="form-group">
+        <label for="update-username">Username</label>
+        <input type="text" id="update-username" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="update-email">Email</label>
+        <input type="email" id="update-email" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-warning mt-3">Update Profile</button>
+      <button type="button" class="btn btn-secondary mt-3" id="cancel-update-form">Cancel</button>
+    </form>
+  </div>
+
+  <!-- Update Password Form (Hidden by Default) -->
+  <div id="update-password-form" style="display: none;">
+    <h4>Change Password</h4>
+    <form id="update-password">
+      <div class="form-group">
+        <label for="current-password">Current Password</label>
+        <input type="password" id="current-password" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="new-password">New Password</label>
+        <input type="password" id="new-password" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm-new-password">Confirm New Password</label>
+        <input type="password" id="confirm-new-password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-warning mt-3">Update Password</button>
+      <button type="button" class="btn btn-secondary mt-3" id="cancel-password-form">Cancel</button>
+    </form>
+  </div>
+
+  <!-- Logout and Delete Account -->
+
+  <button id="logout" class="btn btn-danger">Logout</button>
+  <button id="delete-account" class="btn btn-danger">Delete Account</button>
+</div>
+
+  <script src="../Javascript/api.js"></script>
+</body>
+</html>

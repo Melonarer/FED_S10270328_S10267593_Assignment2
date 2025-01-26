@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MokeSell - Buy, Sell, and Thrive in a Sustainable Marketplace.">
+  <title>MokeSell - Welcome</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="../CSS/landing.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <h2 id="welcome-text">🌟 Welcome to MokeSell 🌟</h2>
+    <p id="description">Buy, Sell, and Thrive in a Minimalist and Eco-Friendly Marketplace.</p>
+  </header>
+
+  <!-- Language Selection Dropdown -->
+  <div class="language-select">
+    <label for="languages">🌐 Choose Language:</label>
+    <select id="languages" onchange="translatePage()">
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+    </select>
+  </div>
+
+  <main>
+    <!-- Why MokeSell Section -->
+    <section id="features">
+      <h2 id="features-title">Why Choose MokeSell?</h2>
+      <div class="features-container">
+        <div class="feature">
+          <h3 id="buy-sell-easily">Seamless Buying & Selling 🛒</h3>
+          <p id="buy-sell-desc">Effortlessly list and discover products with our intuitive platform.</p>
+        </div>
+        <div class="feature">
+          <h3 id="eco-conscious">Eco-Conscious Marketplace 🌱</h3>
+          <p id="eco-desc">Support sustainability by buying and selling preloved items.</p>
+        </div>
+        <div class="feature">
+          <h3 id="customer-benefits">Exclusive Customer Benefits 🎁</h3>
+          <p id="benefits-desc">Enjoy seasonal discounts, coupons, and a loyalty point system.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="cta">
+      <h2 id="cta-text">Join MokeSell Today!</h2>
+      <button id="shop-btn" onclick="location.href='login.html'">Already have an account?</button>
+      <button id="sell-btn" onclick="location.href='signup.html'">🛍️ Join to Start Shopping!</button>
+    </section>
+
+  <!-- Testimonials Section -->
+  <section id="carousel" class="container my-5">
+    <h2 id="carousel-title" class="text-danger text-center mb-4">What Our Members Say</h2>
+    <div class="carousel-container position-relative">
+      <button class="carousel-button prev">❮</button>
+      <div class="carousel-reviews d-flex overflow-hidden">
+        <!-- Review 1 -->
+        <div class="review text-center">
+          <img src="../Consumer Images/Beatrice Tea.png" alt="Beatrice T." class="rounded-circle mb-3">
+          <blockquote>
+            <p id="review-1-text">"MokeSell made selling my items so easy and stress-free!"</p>
+            <cite id="review-1-name" class="text-muted">– Beatrice T.</cite>
+          </blockquote>
+        </div>
+        <!-- Review 2 -->
+        <div class="review text-center">
+          <img src="../Consumer Images/Theo Jorn.png" alt="Theo J." class="rounded-circle mb-3">
+          <blockquote>
+            <p id="review-2-text">"A trustworthy platform with amazing customer support."</p>
+            <cite id="review-2-name" class="text-muted">– Theo J.</cite>
+          </blockquote>
+        </div>
+        <!-- Review 3 -->
+        <div class="review text-center">
+          <img src="../Consumer Images/Forne Taine.png" alt="Forne T." class="rounded-circle mb-3">
+          <blockquote>
+            <p id="review-3-text">"I found unique items I couldn’t find anywhere else. Love it!"</p>
+            <cite id="review-3-name" class="text-muted">– Forne T.</cite>
+          </blockquote>
+        </div>
+        <!-- Review 4 -->
+        <div class="review text-center">
+          <img src="../Consumer Images/Jones To.png" alt="Jones T." class="rounded-circle mb-3">
+          <blockquote>
+            <p id="review-4-text">"This platform is a game-changer for buying and selling online!"</p>
+            <cite id="review-4-name" class="text-muted">– Jones T.</cite>
+          </blockquote>
+        </div>
+        <!-- Review 5 -->
+        <div class="review text-center">
+          <img src="../Consumer Images/Forwea Lone.png" alt="Forwea M." class="rounded-circle mb-3">
+          <blockquote>
+            <p id="review-5-text">"Fast, simple, and effective. I recommend MokeSell to everyone."</p>
+            <cite id="review-5-name" class="text-muted">– Forwea M.</cite>
+          </blockquote>
+        </div>
+      </div>
+      <button class="carousel-button next">❯</button>
+    </div>
+  </section>
+
+    <!-- Footer -->
+    <footer>
+      <p id="footer-text">© 2025 MokeSell - Sleek C2C Platform. All Rights Reserved. 🌏</p>
+    </footer>
+  </main>
+  
+  <script src="../Javascript/translate.js"></script>
+</body>
+</html>
