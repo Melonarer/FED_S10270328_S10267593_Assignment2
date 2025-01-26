@@ -1,0 +1,228 @@
+/* Senior Profile Card */
+.senior-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.senior-image {
+  width: 100%;
+  height: 25rem; /* Height in rem */
+  border-radius: 0.3125rem; /* Border radius in rem */
+  object-fit: cover;
+  margin-bottom: 1.25rem; /* Margin in rem */
+  border: 0.25rem solid #9b5353e7; /* Border in rem */
+}
+
+/* Name, Age, and Location */
+.senior-card h2 {
+  font-size: 2rem;
+}
+
+.senior-info h3, .age-location h3 {
+  font-size: 1.3rem;
+  color: #333;
+}
+
+/* Interaction Emojis */
+.emojis {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.emoji-btn {
+  background-color: #f4f4f4;
+  border: 2px solid #ccc;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.emoji-btn:hover {
+  background-color: transparent !important;
+  border-color: #9b5353 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Profile Info */
+.senior-info {
+  width: 100%;
+  text-align: center;
+}
+
+.info-box {
+  background-color: #fafafa;
+  padding: 1rem 2.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-box h3 {
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.info-box p {
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.senior-card h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-top: 1rem;
+}
+
+/* Top Bar */
+.top-bar {
+  justify-content: center;
+}
+
+.top-bar.hidden {
+  transform: translateY(-100%) !important; /* Hides the top bar when scrolling down */
+  transition: transform 0.3s ease-in-out !important;
+}
+
+/* Main Container */
+.profile-container {
+  max-width: 37.5rem;
+  background: #fff;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin: 2rem auto;
+}
+
+.senior-info p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Match Message */
+#match-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.625rem; /* 10px */
+  background-color: rgba(255, 154, 154, 0.989);
+  border-radius: 0.625rem; /* 10px */
+  display: none;
+  font-size: 1.5rem; /* 24px */
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3); /* 4px, 8px */
+}
+
+/* Reject Message */
+#reject-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.625rem; /* 10px */
+  background-color: rgba(255, 99, 99, 0.973);
+  border-radius: 0.625rem; /* 10px */
+  display: none;
+  font-size: 1.5rem; /* 24px */
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3); /* 4px, 8px */
+}
+
+/* for laptops (medium screens) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .senior-card h2 {
+    font-size: 2.2rem;
+  }
+
+  .senior-info h3 {
+    font-size: 1.4rem;
+  }
+
+  .info-box h3 {
+    font-size: 1.4rem;
+  }
+
+  .info-box p {
+    line-height: 1.4rem;
+  }
+}
+
+/* for tablets (small screens) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .senior-card h2 {
+    font-size: 2rem;
+  }
+
+  .senior-info h3 {
+    font-size: 1.3rem;
+  }
+
+  .info-box h3 {
+    font-size: 1.3rem;
+  }
+
+  .info-box p {
+    line-height: 1.4rem;
+  }
+
+  .senior-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* for mobile devices */
+@media (max-width: 599px) {
+  .senior-card h2 {
+    font-size: 1.6rem;
+  }
+
+  .senior-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .info-box h3 {
+    font-size: 1.2rem;
+  }
+
+  .info-box p {
+    line-height: 1.4rem;
+  }
+
+  /* Hide match/reject messages on mobile (or adjust position) */
+  #match-message, #reject-message {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+
+  /* Adjust emojis */
+  .emoji-btn {
+    font-size: 1.5rem;
+    padding: 0.75rem;
+  }
+}

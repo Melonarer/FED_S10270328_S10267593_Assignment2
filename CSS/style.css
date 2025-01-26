@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Asul:wght@400;700&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* General Styles */
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #EEEDEC;
+  flex-direction: column; /* Stack content vertically */
+  min-height: 100vh; /* Ensure body spans full height of viewport */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Top Bar */
+.top-bar {
+  background-color: #c96d6d;
+  color: white;
+  padding-left: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.5rem; /* 1.5rem = 24px */
+  width: 100%; /* Full width */
+  box-shadow: 0.125rem 0.125rem 0.3125rem rgba(49, 36, 36, 0.2); /* 2px / 16px = 0.125rem */
+  position: sticky;
+  top: 0;
+  z-index: 10; /* Ensure it's on top of other content */
+}
+
+.top-bar h3 {
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.219); /* Adding text shadow */
+}
+
+button {
+  background-color: #a58e8e;
+  color: #f4f4f4;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.3125em; /* 5px / 16px = 0.3125em */
+  font-size: 1rem;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: transform 0.2s, box-shadow 0.2s ease; /* Smooth hover animation */
+  box-shadow: 0.125rem 0.125rem 0.3125rem rgba(49, 36, 36, 0.2);
+  margin: 0 0.3rem;
+  font-weight: bold;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed; /* Prevent interaction */
+}
+
+button:hover:not(:disabled) {
+  background-color: #715555;
+  transform: scale(1.05);
+  box-shadow: 0.25rem 0.25rem 0.625rem rgba(0, 0, 0, 0.3);
+}
+
+/* Active Button */
+button.active {
+  background-color: #715555;
+  color: white;
+  transform: scale(1.05); /* Slightly bigger when active */
+  box-shadow: none;
+}
+
+/* Logout Button */
+#logout {
+  color: #715555;
+  background-color: transparent;  /* Transparent background */
+  padding: 0.625rem 1.25rem;  /* Button padding */
+  box-shadow: none;
+}
+
+/* Logout Button hover effect */
+#logout:hover {
+  color: #a58e8e;
+}
+
+/* Navbar */
+.nav-bar {
+  margin: 2rem 0;
+}
+.nav-btn {
+  background-color: #867373;
+  color: white;
+  padding: 1rem 1.5rem;
+  margin-right: 0.5rem;
+  margin-left: 0.3;
+  font-size: 1.25rem;
+}
+
+.search-bar {
+  margin-right: 6rem;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.3rem;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 20rem; /* Sidebar width */
+  padding: 0 1.25rem;
+  background-color: #fff;  /* White background for the sidebar */
+  box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.2); /* Light shadow */
+  position: fixed; /* Sidebar stays fixed on the screen */
+  left: -24rem;  /* Initially off-screen */
+  height: 100%; /* Full height */
+  transition: left 0.3s ease-in-out; /* Smooth transition when toggled */
+  overflow: hidden; /* Prevent overflow */
+  z-index: 1000; /* Ensure the sidebar stays on top */
+}
+
+/* When sidebar is open */
+.sidebar.open {
+  left: 0; /* Bring the sidebar into view */
+}
+
+/* Sidebar button */
+#closeSidebar {
+  margin-bottom: 1rem;
+}
+
+#closeSidebar:hover {
+  background-color: #715555;
+}
+
+/* Profile Info Section */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f4f4f4c9; /* yummy Light gray background for the profile box */
+  padding: 1rem; /* Add padding for spacing */
+  border-radius: 0.3125rem;
+  text-align: center;
+  height: 100%;
+}
+
+.profile-info img {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 0.5rem;
+  object-fit: cover; /* Crop images automatically */
+}
+
+.profile-info h4 {
+  font-size: 1.25rem; /* Size of the name */
+  font-weight: bold;
+  margin-bottom: 0.8rem; /* Space below the name */
+  color: #333; /* Darker text for the name */
+}
+
+.profile-info p {
+  font-size: 1rem;  /* Age and location text size */
+  font-weight: 500;
+}
+
+.main-container {
+  transition: margin-left 0.3s ease-in-out;
+  padding: 0 3rem;
+}
+
+.sidebar.open + .main-container {
+  margin-left: 20rem; /* Shifted when sidebar is open */
+}
+
+/* Status Carousel Styles */
+.status-carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+.status-carousel:hover {
+  animation-play-state: paused; /* Pause auto-scroll on hover */
+}
+
+.status-feed h2 {
+  margin-bottom: 0.4rem;
+}
+
+.status {
+  width: 8rem;
+  height: 8rem;
+  background-color: #ffffffac;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.status:hover {
+  transform: scale(1.1); /* Slightly bigger when hovered */
+}
+
+.status img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover; /* Crop images automatically */
+  border-radius: 0.3125rem;
+}
+
+/* News Carousel */
+.news-carousel {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.news-item {
+  background-color: white;
+  padding: 1.25rem;
+  margin-top: 2rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+/* User Cards */
+.user-cards-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  margin-right: 30rem;  /* cos cards keep coming up so Space between the title and the cards */
+  margin-bottom: 0.4rem;
+}
+
+/* Default layout: cards per line based on screen size */
+.user-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.user-card {
+  background-color: #f4f4f4;
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
+  text-align: center;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.user-card:hover {
+  transform: scale(1.05);
+}
+
+.user-card img {
+  width: 100%; /* Image takes full width of the card */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure image doesn't overflow */
+  height: 20rem; /* Max height set in rem (equivalent to 200px if 1rem = 16px) */
+  border-radius: 0.3125rem; /* Rounded corners for the image */
+  object-fit: cover; /* Crop image to fit the container */
+}
+
+.user-card h4 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.user-card p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.user-card button {
+  margin-bottom: 1rem;
+}
+
+/* Filter */
+.filter-container {
+  margin-top: 2rem;
+  text-align: left;
+  font-weight: bold;
+}
+
+.filter-container label {
+  font-size: 1.5rem;
+  margin-right: 0.625rem;
+}
+
+.filter-container select {
+  padding: 0.625rem; /* Space inside the select box */
+  font-size: 1.25rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3125rem;
+  background-color: white;
+}
+
+footer {
+  text-align: center;
+  padding: 0.625rem;
+  background-color: #c96d6d;
+  color: white;
+}
+
+/* for large screens (desktops, monitors) */
+@media (min-width: 1200px) {
+  .user-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* for laptops (medium screens) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .user-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  body {
+    font-size: 0.95rem;
+  }
+  .section-title {
+    margin-right: 12rem; /* adjust margin for section-title */
+  }
+}
+
+/* for tablets (small screens) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .user-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  body {
+    font-size: 0.9rem;
+  }
+  .section-title {
+    margin-right: 8rem; /* adjust section-title margin */
+  }
+}
+
+/* for mobile devices (between 767px and 600px) */
+@media (max-width: 767px) and (min-width: 600px) {
+  .user-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  button {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.8rem;
+  }
+  .nav-btn { /* specific size reduction for nav-btn */
+    font-size: 1rem; /* increased font size for mobile */
+    padding: 0.8rem 1rem; /* increased padding for mobile */
+  }
+  body {
+    font-size: 0.85rem;
+  }
+  .section-title {
+    margin-right: -4rem; /* adjust margin for smaller screens */
+  }
+  .top-bar {
+    font-size: 1.5rem;
+    height: 20%;
+  }
+  .top-bar input {
+    font-size: 0.8rem; /* reduced size for search input on mobile */
+    width: 20%;
+    margin-right: 6em;
+  }
+  .top-bar h3 {
+    font-size: 1rem; /* reduced size for top bar heading */
+  }
+}
+
+/* for devices between 599px and 420px */
+@media (max-width: 599px) {
+  .user-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  button {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.8rem;
+  }
+  .nav-btn { /* specific size reduction for nav-btn */
+    font-size: 0.90rem; /* increased font size for mobile */
+    padding: 0.75rem 0.98rem; /* increased padding for mobile */
+    margin-left: 0.1rem;
+  }
+  body {
+    font-size: 0.85rem;
+  }
+  .section-title {
+    margin-right: -4rem; /* adjust margin for smaller screens */
+  }
+  .top-bar {
+    font-size: 1.5rem;
+    height: 20%;
+  }
+  .top-bar input {
+    font-size: 0.8rem; /* reduced size for search input on mobile */
+    width: 20%;
+    margin-right: 6em;
+  }
+  .top-bar h3 {
+    font-size: 1rem; /* reduced size for top bar heading */
+  }
+}
