@@ -1,21 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
   // API Key and Base URL for API requests
-  const APIKEY = "67960ee40acc06719d0d3647";  // API key for authentication with the RESTDB service
+  const APIKEY = "679858eff9d2bbdc10181e5d";  // API key for authentication with the RESTDB service
   const BASE_URL = "https://mokeselldev-513e.restdb.io/rest/consumer";  // Base URL for the RESTDB API
 
   // Utility function to make API requests (GET, POST, PUT, DELETE)
   async function apiRequest(url, method, data = null) {
-    const settings = {
-      method: method,  // HTTP method (GET, POST, etc.)
-      headers: {
-        "Content-Type": "application/json",  // Indicates that the data being sent is in JSON format
-        "x-apikey": APIKEY,  // Authentication header with API key
-      },
-      body: data ? JSON.stringify(data) : null,  // Convert data to JSON string if there is data to send
+    const APIKEY = "679858eff9d2bbdc10181e5d";
+    const headers = {
+      "Content-Type": "application/json",
+      "x-apikey": APIKEY,
     };
-
-    const response = await fetch(url, settings);  // Perform the API request
-    return response.json();  // Parse the response as JSON and return it
+  
+    try {
+      const response = await fetch(url, {
+        method: method,
+        headers: headers,
+        body: data ? JSON.stringify(data) : null,
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error("Request failed:", error);
+      throw error;
+    }
   }
 
   // ------------- CREATE (Add new user) -------------
@@ -39,7 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
-        const user = { Username: username, Email: email, Password: password, "Loyalty Points": 0 };
+        const user = { 
+            Username: username, 
+            Email: email, 
+            Password: password, 
+        };
         const newUser = await apiRequest(BASE_URL, "POST", user);  // Create a new user in RESTDB
         alert("Sign Up Successful!");
         window.location.href = "login.html";  // Redirect to login page after successful signup
@@ -51,114 +66,82 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ------------- READ (Login user) -------------
-  if (document.getElementById("login-form")) {  // Check if login form is present
-    document.getElementById("login-form").addEventListener("submit", async (e) => {
-      e.preventDefault();  // Prevent form submission from reloading the page
-      const email = document.getElementById("login-email").value;
-      const password = document.getElementById("login-password").value;
+  const loginUser = async () => {
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
 
-      try {
-        const users = await apiRequest(BASE_URL, "GET");  // Get all users from RESTDB
-        const user = users.find((u) => u.Email === email && u.Password === password);  // Find the user by email and password
+    try {
+      const users = await apiRequest(BASE_URL, "GET"); // Fetch all users from RESTdb
+      const user = users.find((u) => u.Email === email && u.Password === password);
 
-        if (user) {
-          window.location.href = `profile.html?userId=${user._id}`;  // Redirect to profile page with userId in the URL
-        } else {
-          alert("Invalid email or password.");
-        }
-      } catch (err) {
-        alert("Error logging in. Please try again.");
+      if (user) {
+        // Save user details to localStorage for the session
+        localStorage.setItem("userId", user._id);
+        localStorage.setItem("username", user.Username);
+        localStorage.setItem("email", user.Email);
+        alert("Login successful!");
+
+        // Redirect to profile page
+        window.location.href = `profile.html`;
+      } else {
+        alert("Invalid email or password.");
       }
+    } catch (err) {
+      alert("Error during login. Please try again.");
+      console.error(err);
+    }
+  };
+
+  if (document.getElementById("login-form")) {
+    document.getElementById("login-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      loginUser();
     });
   }
 
-  // ------------- Display Profile Information -------------
+  // ------------- Display Profile Information (Fetch from RESTdb) -------------
   async function fetchUserData(userId) {
     try {
-      const user = await apiRequest(`${BASE_URL}/${userId}`, "GET");  // Fetch the user data
-      document.getElementById("profile-username").textContent = user.Username;  // Display username
-      document.getElementById("profile-email").textContent = user.Email;  // Display email
-      document.getElementById("profile-loyalty").textContent = user["Loyalty Points"];  // Display loyalty points
+      // Fetch user data from RESTDB first
+      const user = await apiRequest(`${BASE_URL}/${userId}`, "GET");
+  
+      // If the user data is found in RESTDB, display it
+      if (user) {
+        document.getElementById("profile-username").textContent = user.Username;
+        document.getElementById("profile-email").textContent = user.Email;
+        document.getElementById("profile-loyalty").textContent = user["Loyalty Points"];
+      } else {
+        // If no user data from RESTDB, fallback to localStorage
+        const storedUserId = localStorage.getItem('userId');
+        if (storedUserId) {
+          const storedUsername = localStorage.getItem('username');
+          const storedEmail = localStorage.getItem('email');
+          const storedLoyalty = localStorage.getItem('loyaltyPoints');
+  
+          // Display data from localStorage if no data found in RESTDB
+          document.getElementById("profile-username").textContent = storedUsername;
+          document.getElementById("profile-email").textContent = storedEmail;
+          document.getElementById("profile-loyalty").textContent = storedLoyalty;
+        } else {
+          alert("User not found in both RESTDB and localStorage.");
+        }
+      }
     } catch (err) {
       alert("Error fetching user data.");
       console.error(err);
     }
   }
+  
+  // Fetch user ID from the URL or localStorage and call the function to populate data
+  const urlParams = new URLSearchParams(window.location.search);
+  const userId = urlParams.get('userId') || localStorage.getItem("userId");
+  if (userId) {
+    fetchUserData(userId);  // Call function to fetch and display user data
+  } else {
+    alert("No user ID found.");
+  }
 
-  // ------------- Update Username/Email -------------
-  if (document.getElementById("update-form")) {
-    document.getElementById("update-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const username = document.getElementById("update-username").value;
-      const email = document.getElementById("update-email").value;
-  
-      const urlParams = new URLSearchParams(window.location.search);
-      const userId = urlParams.get("userId");
-  
-      if (!userId) {
-        alert("User ID is missing. Please log in again.");
-        return;
-      }
-  
-      try {
-        const updatedData = { Username: username, Email: email };
-        await apiRequest(`${BASE_URL}/${userId}`, "PUT", updatedData); // Update user data
-        alert("Profile updated successfully!");
-        window.location.reload(); // Reload to reflect changes
-      } catch (err) {
-        alert("Error updating profile. Please try again.");
-        console.error(err);
-      }
-    });
-  
-    document.getElementById("cancel-update-form").addEventListener("click", () => {
-      document.getElementById("update-profile-form").style.display = "none"; // Hide update form
-    });
-  }
-  
-  // ------------- Update Password -------------
-  if (document.getElementById("update-password")) {
-    document.getElementById("update-password").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const currentPassword = document.getElementById("current-password").value;
-      const newPassword = document.getElementById("new-password").value;
-      const confirmNewPassword = document.getElementById("confirm-new-password").value;
-  
-      const urlParams = new URLSearchParams(window.location.search);
-      const userId = urlParams.get("userId");
-  
-      if (!userId) {
-        alert("User ID is missing. Please log in again.");
-        return;
-      }
-  
-      if (newPassword !== confirmNewPassword) {
-        alert("New passwords do not match.");
-        return;
-      }
-  
-      try {
-        const user = await apiRequest(`${BASE_URL}/${userId}`, "GET"); // Fetch user data
-  
-        if (user.Password !== currentPassword) {
-          alert("Current password is incorrect.");
-          return;
-        }
-  
-        const updatedPassword = { Password: newPassword };
-        await apiRequest(`${BASE_URL}/${userId}`, "PUT", updatedPassword); // Update password
-        alert("Password updated successfully!");
-        document.getElementById("update-password-form").style.display = "none"; // Hide password form
-      } catch (err) {
-        alert("Error updating password. Please try again.");
-        console.error(err);
-      }
-    });
-  
-    document.getElementById("cancel-password-form").addEventListener("click", () => {
-      document.getElementById("update-password-form").style.display = "none"; // Hide password form
-    });
-  }
+  // ------------- Update User Profile -------------
 
   // ------------- DELETE (Delete user account) -------------
   document.getElementById("delete-account").addEventListener("click", async () => {
@@ -176,19 +159,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // ------------- LOGOUT (Clear session) -------------
+  // ------------- Logout User -------------
   if (document.getElementById("logout")) {
     document.getElementById("logout").addEventListener("click", () => {
-      sessionStorage.clear();  // Clear session (currently not used, as per your request)
-      window.location.href = "landing.html";  // Redirect to landing page
+      localStorage.clear(); // Clear all stored user data
+      alert("Logged out successfully.");
+      window.location.href = "landing.html";
     });
-  }
-
-  // ------------- Get User ID and Display Data on Page Load -------------
-  const urlParams = new URLSearchParams(window.location.search);
-  const userId = urlParams.get('userId');
-  if (userId) {
-    fetchUserData(userId);  // Fetch and display user data when profile page is loaded
   }
 
   // Toggle update form visibility
